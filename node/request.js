@@ -6,7 +6,7 @@ const type = args[1] ? args[1] : 'sync';
 let chain = Promise.resolve();
 
 for (let i = 1; i <= n; i++) {
-  if (type === 'sync') {
+  if (type === 'async') {
     promisifiedRequest().then((response) => {
       console.log(response);
     });
