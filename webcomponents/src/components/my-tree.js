@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
-import '../my-leaf/my-leaf';
+import './my-leaf';
 
 class MyTree extends LitElement {
   static get properties() {
@@ -26,33 +26,17 @@ class MyTree extends LitElement {
   constructor() {
     super();
     this.treeData = {};
-    this.tree = '';
-
-    this.makeTree();
-  }
-
-  updated() {
-    this.makeTree();
-  }
-
-  makeTree() {
-    this.tree = '';
-
-    for (let [key, value] of Object.entries(this.treeData)) {
-      if (Array.isArray(value)) {
-        value.map((item) => {
-          this.tree = html`${this.tree} <my-tree treedata="${JSON.stringify(item)}"></my-tree>`;
-        });
-      } else {
-        this.tree = html`${this.tree} <my-leaf>${key}: ${value}</my-leaf>`;
-      }
-    }
   }
 
   render() {
     return html` 
       <div>
-        ${this.tree}
+        ${ Object.keys(this.treeData).map(key => {
+          return  Array.isArray(this.treeData[key]) ? 
+            this.treeData[key].map(item => html`<my-tree treedata="${JSON.stringify(item)}"></my-tree>`) 
+            : 
+            html`<my-leaf>${key}: ${this.treeData[key]}</my-leaf>`;
+        })}
       </div>
     `;
   }

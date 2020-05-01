@@ -11,5 +11,14 @@ module.exports = {
   },
   devServer: {
     overlay: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre'
+      }
+    ]
   }
 };
