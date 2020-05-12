@@ -1,6 +1,14 @@
 import { LitElement, html, css } from 'lit-element';
 
 class MyLeaf extends LitElement {
+  static get properties() {
+    return {
+      leafContent: {
+        type: String
+      }
+    };
+  }
+
   static get styles() {
     return css`
       span {
@@ -14,10 +22,15 @@ class MyLeaf extends LitElement {
     `;
   }
 
+  constructor() {
+    super();
+    this.leafContent = '';
+  }
+
   render() {
     return html` 
       <span>
-        <slot></slot>
+        ${ this.leafContent }
       </span>
     `;
   }

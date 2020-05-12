@@ -29,14 +29,10 @@ class MyTree extends LitElement {
   }
 
   render() {
-    return html` 
+    return html`
       <div>
-        ${ Object.keys(this.treeData).map(key => {
-          return  Array.isArray(this.treeData[key]) ? 
-            this.treeData[key].map(item => html`<my-tree treedata="${JSON.stringify(item)}"></my-tree>`) 
-            : 
-            html`<my-leaf>${key}: ${this.treeData[key]}</my-leaf>`;
-        })}
+        ${ this.treeData.hasOwnProperty('id') ? html`<my-leaf leafContent="id: ${this.treeData.id}" />` : '' }
+        ${ this.treeData.hasOwnProperty('items') ? this.treeData.items.map(item => html`<my-tree treedata="${JSON.stringify(item)}"></my-tree>`) : '' }
       </div>
     `;
   }
