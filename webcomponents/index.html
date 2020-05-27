@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Elements Tree</title>
+</head>
+<body>
+  <style>
+    .wrapper {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin: 0 0 40px;
+      outline: none;
+    }
+
+    .-error {
+      border: #f00 1px solid;
+    }
+  </style>
+
+  <div class="wrapper">
+    <h1>Custom Elements Tree</h1>
+
+    <p>Input valid json:</p>
+    <textarea id="json-input">
+{
+  "id": 3234,
+  "items": [{
+    "id": 2,
+    "items": [{
+      "id": 3
+    }]
+  }]
+}
+  </textarea>
+
+    <my-tree id="my-tree"></my-tree>
+  </div>
+
+  <script src="/dist/app.js"></script>
+</body>
+</html>
