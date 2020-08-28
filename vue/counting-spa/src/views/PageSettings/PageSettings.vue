@@ -10,22 +10,22 @@
 
     <div class="settings-group">
       <input
-          type="range"
-          min="1"
-          max="15"
-          :value="time"
-          @change="setField($event, 'time')"
+        type="range"
+        min="1"
+        max="15"
+        :value="time"
+        @change="setField($event, 'time')"
       />
       Длительность {{ time }} минут
     </div>
 
     <div class="settings-group">
       <input
-          type="range"
-          min="1"
-          max="5"
-          :value="difficulty"
-          @change="setField($event, 'difficulty')"
+        type="range"
+        min="1"
+        max="5"
+        :value="difficulty"
+        @change="setField($event, 'difficulty')"
       />
       Сложность {{ difficulty }}
     </div>
@@ -34,9 +34,9 @@
       <div>
         <label>
           <input
-              type="checkbox"
-              @change="setField($event, 'isSum')"
-              :checked="isSum"
+            type="checkbox"
+            @change="setField($event, 'isSum')"
+            :checked="isSum"
           />
           Суммирование
         </label>
@@ -45,9 +45,9 @@
       <div>
         <label>
           <input
-              type="checkbox"
-              @change="setField($event, 'isSub')"
-              :checked="isSub"
+            type="checkbox"
+            @change="setField($event, 'isSub')"
+            :checked="isSub"
           />
           Вычитание
         </label>
@@ -56,9 +56,9 @@
       <div>
         <label>
           <input
-              type="checkbox"
-              @change="setField($event, 'isMult')"
-              :checked="isMult"
+            type="checkbox"
+            @change="setField($event, 'isMult')"
+            :checked="isMult"
           />
           Умножение
         </label>
@@ -67,9 +67,9 @@
       <div>
         <label>
           <input
-              type="checkbox"
-              @change="setField($event, 'isDiv')"
-              :checked="isDiv"
+            type="checkbox"
+            @change="setField($event, 'isDiv')"
+            :checked="isDiv"
           />
           Деление
         </label>
@@ -77,9 +77,9 @@
     </div>
 
     <a
-        v-if="isTypeChecked"
-        href="/training"
-        class="button"
+      v-if="isTypeChecked"
+      href="/training"
+      class="button"
     >
       Let's play!
     </a>
