@@ -15,9 +15,9 @@ const typeDefs = gql`
   type Mutation {
     addUser(email: String!, username: String!, password: String!): Response!
     deleteUser(id: ID!): Response!
-    addProduct(product: ID!): Response!
+    addProduct(title: String!, price: Float!, description: String, image: String, category: String): Response!
     deleteProduct(id: ID!): Response!
-    updateProduct(product: ID!): Response!
+    updateProduct(id: ID!, title: String, price: Float, description: String, image: String, category: String): Response!
   }
   
   type Response {
@@ -138,31 +138,14 @@ const resolvers = {
         method: 'POST',
         body: JSON.stringify(
           {
-            email: email,
-            username: username,
-            password: password,
-            name: {
-              firstname: 'John',
-              lastname: 'Doe',
-            },
-            address: {
-              city: 'kilcoole',
-              street: '7835 new road',
-              number: 3,
-              zipcode: '12926-3874',
-              geolocation: {
-                lat: '-37.3159',
-                long: '81.1496',
-              },
-            },
-            phone: '1-570-236-7033',
+            email,
+            username,
+            password,
           }
         ),
       })
         .then(res => res.json())
         .then(json => {
-          console.log(JSON.stringify(json));
-
           if (json) {
             return {
               success: true,
@@ -191,6 +174,80 @@ const resolvers = {
             return {
               success: true,
               message: 'пользователь удален',
+            }
+          } else {
+            throw new Error();
+          }
+        })
+        .catch(error => {
+          console.log(error);
+
+          return {
+            success: false,
+            message: 'ошибка',
+          }
+        });
+    },
+    addProduct: (parent, { title, price, description, image, category }) => {
+      return fetch(`https://fakestoreapi.com/products/`, {
+        method: 'POST',
+        body: JSON.stringify(
+          {
+            title,
+            price,
+            description,
+            image,
+            category,
+          }
+        ),
+      })
+        .then(res => res.json())
+        .then(json => {
+          if (json) {
+            return {
+              success: true,
+              message: `товар добавлен, id: ${json.id}`,
+            }
+          } else {
+            throw new Error();
+          }
+        })
+        .catch(error => {
+          console.log(error);
+
+          return {
+            success: false,
+            message: 'ошибка',
+          }
+        });
+    },
+    updateProduct: (parent, { id, title, price, description, image, category }) => {
+      let newData = {};
+
+      if (title) newData.title = title;
+      if (price) newData.price = price;
+      if (description) newData.description = description;
+      if (image) newData.image = image;
+      if (category) newData.category = category;
+
+      return fetch(`https://fakestoreapi.com/products/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(
+          {
+            title,
+            price,
+            description,
+            image,
+            category,
+          }
+        ),
+      })
+        .then(res => res.json())
+        .then(json => {
+          if (json) {
+            return {
+              success: true,
+              message: `товар с id ${json.id} успешно обновлен, ${JSON.stringify(newData)}`,
             }
           } else {
             throw new Error();
