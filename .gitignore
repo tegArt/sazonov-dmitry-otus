@@ -1,3 +1,4 @@
 /.idea/
 /webcomponents/dist/
 /webcomponents/node_modules/
+/graphql/node_modules/
