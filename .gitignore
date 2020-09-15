@@ -1,4 +1,6 @@
 /.idea/
-/webcomponents/dist/
+cd/webcomponents/dist/
 /webcomponents/node_modules/
 /graphql/node_modules/
+/react/react-1/my-first-app/node_modules/
+/react/react-1/node_modules/
