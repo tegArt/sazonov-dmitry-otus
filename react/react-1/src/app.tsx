@@ -1,7 +1,14 @@
 import * as React from 'react';
 
-class App extends React.Component {
-  constructor(props: any) {
+interface IProps {
+  test: string,
+}
+
+interface IState {
+}
+
+class App extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
   }
 
